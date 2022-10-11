@@ -1,3 +1,5 @@
+package model;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -11,6 +13,7 @@ public class Bootcamp {
     private final LocalDate dataFinal = dataInical.plusDays(45);
     private Set<Dev> devsInscritos = new HashSet<>();
     private Set<Conteudo> conteudos = new LinkedHashSet<>();
+
 
     @Override
     public boolean equals(Object o) {

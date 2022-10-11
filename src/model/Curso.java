@@ -1,4 +1,6 @@
-public class Curso extends Conteudo{
+package model;
+
+public class Curso extends Conteudo {
      private int cargaHoraria;
 
     public Curso() {
@@ -7,9 +9,7 @@ public class Curso extends Conteudo{
     @Override
     public String toString() {
         return "Curso{" +
-                "titulo='" + getTitulo() + '\'' +
-                ", descricao='" + getDescricao() + '\'' +
-                ", cargaHoraria=" + cargaHoraria +
+                "cargaHoraria=" + cargaHoraria +
                 '}';
     }
 
@@ -25,4 +25,5 @@ public class Curso extends Conteudo{
     public void setCargaHoraria(int cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
     }
+
 }
