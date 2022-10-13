@@ -11,14 +11,10 @@ public class Topico extends Argumento{
         super(dev, texto);
         this.nomeDoForum = nomeDoForum;
     }
-    @Override
-    public void listar(){
-        System.out.println("LISTA DE TÓPICOS " + this.nomeDoForum.toUpperCase());
 
-        for(Argumento argumento : this.getRespostas()){
-            System.out.print("Dev: " + argumento.getDev().getNome());
-            System.out.println(" [Resposta para : " + argumento.getId() + " " + argumento.getTexto() + "]");
-        }
+    public void exibir(){
+        System.out.print(" [Tópico id(" + this.getId() + "): Dev: " + this.getDev().getNome());
+        System.out.println(" > " + this.getTexto().toUpperCase() + "]");
     }
     @Override
     public String toString() {
@@ -34,8 +30,7 @@ public class Topico extends Argumento{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Topico)) return false;
-        Topico topico = (Topico) o;
+        if (!(o instanceof Topico topico)) return false;
         return Objects.equals(nomeDoForum, topico.nomeDoForum);
     }
 
@@ -44,11 +39,4 @@ public class Topico extends Argumento{
         return Objects.hash(nomeDoForum);
     }
 
-    public String getForum() {
-        return nomeDoForum;
-    }
-
-    public void setForum(String forum) {
-        this.nomeDoForum = forum;
-    }
-}
+ }

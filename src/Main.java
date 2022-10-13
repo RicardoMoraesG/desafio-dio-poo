@@ -3,13 +3,13 @@ import model.Curso;
 import model.Dev;
 import model.Mentoria;
 import model.forum.Forum;
-import model.forum.Resposta;
-import model.forum.Topico;
 
 import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
+
+
         Curso cursoJava = new Curso();
         cursoJava.setTitulo("curso java");
         cursoJava.setDescricao("descrição curso java");
@@ -38,7 +38,7 @@ public class Main {
         bootcampJavaDeveloper.getConteudos().add(mentoriaJava);
 
         Dev devJoao = new Dev();
-        devJoao.setNome("João Devoto");
+        devJoao.setNome("Zé Systemson");
         devJoao.inscreverBootcamp(bootcampJavaDeveloper);
         System.out.println("Conteúdos Inscritos " + devJoao.getConteudosInscritos());
         devJoao.progredir();
@@ -47,7 +47,7 @@ public class Main {
         System.out.println("XP: " + devJoao.calcularTotalXp());
 
         Dev devMaria = new Dev();
-        devMaria.setNome("Maria Da Silva Santos");
+        devMaria.setNome("Ana Googlives");
         devMaria.inscreverBootcamp(bootcampJavaDeveloper);
         System.out.println("Conteúdos Inscritos " + devMaria.getConteudosInscritos());
         devMaria.progredir();
@@ -57,33 +57,38 @@ public class Main {
         System.out.println("XP: " + devMaria.calcularTotalXp());
 
         //Cada conteúdo pode possuir um fórum para as dúvidas dos participantes.
+        //Fiz um package com as classes para o fórum.
         //Fórum do curso 1:
         Forum forumCursoJava = new Forum(cursoJava);
-        forumCursoJava.criarTopico(devMaria,"teste de id", forumCursoJava.getNomeDoForum());
-        forumCursoJava.criarTopico(devMaria, "Como usar POO em Java?", forumCursoJava.getNomeDoForum());
-        forumCursoJava.criarTopico(devJoao, "Collections", forumCursoJava.getNomeDoForum());
-        //Resposta resposta = new Resposta(forumCursoJava);
-
+        forumCursoJava.listarTopicos();
+        forumCursoJava.criarTopico(devMaria,"Métodos printf, print e println?", forumCursoJava.getNomeDoForum());
+        forumCursoJava.criarTopico(devMaria, "Paradigma de Programação Orientada a Objetos em Java?", forumCursoJava.getNomeDoForum());
+        forumCursoJava.criarTopico(devJoao, "Trabalhando com Collections", forumCursoJava.getNomeDoForum());
+        forumCursoJava.criarTopico(devMaria, "Dominando IDE's Java", forumCursoJava.getNomeDoForum());
+        forumCursoJava.criarTopico(devJoao, "Exercícios", forumCursoJava.getNomeDoForum());
         //Exibe o Fórum do Curso Java:
-        System.out.println("**************Mostrar a lista de Tópicos:****************");
         forumCursoJava.listarTopicos();
-        System.out.println("**************");
-
         //responder um Topico:
-        int idPergunta = 2;
-        for(Topico topico : forumCursoJava.getTopicos()){
-            if(topico.getId() == idPergunta){
-                topico.responder(new Resposta(devJoao, "Respondi o tópico 2...", idPergunta));
-            }
-        }
+        forumCursoJava.responderTopico(devMaria,"1", "O método System.out.println() gera uma string de texto, cria uma nova linha abaixo da atual e então posiciona o cursor nesta linha.");
+        forumCursoJava.responderTopico(devJoao,"1","O método System.out.print() gera uma string de texto, porém diferentemente do método println, não cria uma nova linha abaixo da atual, deixando o cursor na mesma linha onde a string foi impressa.");
+        forumCursoJava.responderTopico(devJoao,"2","Retorne objetos.");
+        forumCursoJava.responderTopico(devJoao,"2","através de Arrays.");
+        forumCursoJava.responderTopico(devJoao,"4","Dominando comandos do Eclipse.");
+        forumCursoJava.responderTopico(devJoao,"4","IntelliJ.");
+        forumCursoJava.responderTopico(devJoao,"5","Exercicio 1.");
+        forumCursoJava.responderTopico(devJoao,"5","Exercicio 2.");
+
         //Mostrar a lista depois de uma resposta.
-        System.out.println("**************Mostrar a lista depois uma resposta.****************");
         forumCursoJava.listarTopicos();
-        System.out.println("**************");
+        //Abrir um Tópico
+        System.out.println("Abrir um Tópico");
+        forumCursoJava.abrirTopico("1");
 
-
-
-
+        //Réplicas.
+        forumCursoJava.responderTopico(devJoao,"1.1","Uso muito o println.");
+        forumCursoJava.responderTopico(devJoao,"4.5","Não sou ligado nessas paradas de astronomia.");
+        //Mostra a lista depois das réplicas.
+        forumCursoJava.listarTopicos();
 
     }
 

@@ -9,32 +9,23 @@ import java.util.Objects;
  * para apontar para uma pergunta.
  */
 public class Resposta extends Argumento{
-    int pergunta;
+    Argumento pergunta;
 
     /**
      *
      * @param dev a pessoa que cria a resposta.
-     * @param idPergunta o id (identicador) da pergunta.
+     * @param  Pergunta o argumento que será respondido.
      */
-    public Resposta(Dev dev, String texto, int idPergunta) {
+    public Resposta(Dev dev, String texto, Argumento Pergunta) {
         super(dev, texto);
-        this.pergunta = idPergunta;
+        this.pergunta = Pergunta;
+
     }
 
-    public int getPergunta() {
+    public Argumento getPergunta() {
         return pergunta;
     }
 
-    public void setPergunta(int pergunta) {
-        this.pergunta = pergunta;
-    }
-    @Override
-    public void listar(){
-        for(Argumento argumento : this.getRespostas()){
-            System.out.print("Dev: " + argumento.getDev().getNome());
-            System.out.println(" [Resposta para : " + this.getPergunta() + argumento.getId() + " " + argumento.getTexto() + "]");
-        }
-    }
     @Override
     public String toString() {
         return "Resposta{" +
@@ -49,9 +40,8 @@ public class Resposta extends Argumento{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Resposta)) return false;
+        if (!(o instanceof Resposta resposta)) return false;
         if (!super.equals(o)) return false;
-        Resposta resposta = (Resposta) o;
         return Objects.equals(pergunta, resposta.pergunta);
     }
 
